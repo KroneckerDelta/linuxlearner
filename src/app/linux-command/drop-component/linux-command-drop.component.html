@@ -1,15 +1,6 @@
 <h2>LinuxCommandDropComponent</h2>
-<div droppable [dropScope]="'drink'" [dragOverClass]="'drag-target-border'">
-  <p>Only Drinks can be dropped in the above container</p>
-</div>
-<div droppable [dropScope]="['drink', 'meal']" [dragOverClass]="'drag-target-border'">
-  <p>Both Meal and Drinks can be dropped in the above container</p>
-</div>
-
-<div droppable [dropScope]="dropAllowed" [dragOverClass]="'drag-target-border'">
-  <p>Only those items are droppable for which the `isDropAllowed()` function returns true</p>
-</div>
 
 <div droppable>
-  <p>Drop items here</p>
+  <p>Command: </p>
+
 </div>
