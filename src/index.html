@@ -11,6 +11,7 @@
   <meta name="description" content="<%= htmlWebpackPlugin.options.title %>">
   <!-- base url -->
   <base href="<%= htmlWebpackPlugin.options.metadata.baseUrl %>">
+
   <% if (webpackConfig.htmlElements.headTags) { %>
     <!-- Configured Head Tags  -->
     <%= webpackConfig.htmlElements.headTags %>
@@ -41,7 +42,7 @@
               <!-- Preload link tags will be injected by webpack here -->
               <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha256-k2WSCIexGzOj3Euiig+TlR8gA0EmPjuc79OEeY5L45g="
                 crossorigin="anonymous"></script>
-              <link rel="stylesheet" href="node_modules/ng2-drag-drop/style.css">
+
 </head>
 
 <body>

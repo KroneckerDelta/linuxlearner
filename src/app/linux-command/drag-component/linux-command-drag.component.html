@@ -3,5 +3,10 @@
   <li class="nav a" draggable>grep</li>
   <li draggable>sed</li>
   <li draggable>find</li>
-
+  <li draggable [dragImage]="'../../../assets/icon/android-icon-36x36.png'">
+    Not Draggable by list item but by the handle only.
+    <div class="pull-right">
+      <i class="drag-handle fa fa-bars fa-lg" aria-hidden="true"></i>
+    </div>
+  </li>
 </ul>
