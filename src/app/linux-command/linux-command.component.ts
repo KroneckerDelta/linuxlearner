@@ -18,4 +18,5 @@ export class LinuxCommandComponent implements OnInit, OnDestroy {
   public ngOnDestroy() {
     console.log(this.name + '.ngOnDestroy()');
   }
+
 }

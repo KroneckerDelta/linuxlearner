@@ -18,4 +18,10 @@ export class LinuxCommandDropComponent implements OnInit, OnDestroy {
     public ngOnDestroy() {
         console.log(this.name + '.ngOnDestroy()');
     }
+
+    val = 500;
+    isDropAllowed = (dragData: any) => {
+        console.log('drop');
+        return dragData > this.val;
+    }
 }

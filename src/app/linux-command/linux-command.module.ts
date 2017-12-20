@@ -2,6 +2,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { Ng2DragDropModule } from 'ng2-drag-drop';
 
 import { LinuxCommandDragComponent } from './drag-component/linux-command-drag.component';
 import { LinuxCommandDropComponent } from './drop-component/linux-command-drop.component';
@@ -17,7 +18,8 @@ import { LinuxCommandSourceComponent } from './source-component/linux-command-so
         BrowserModule,
         FormsModule,
         HttpClientModule,
-        LinuxCommandRoutesModule
+        LinuxCommandRoutesModule, 
+        Ng2DragDropModule.forRoot()
     ],
     declarations: [
         LinuxCommandComponent,
