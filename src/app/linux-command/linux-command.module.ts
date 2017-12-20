@@ -4,8 +4,12 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { LinuxCommandDragComponent } from './drag-component/linux-command-drag.component';
+import { LinuxCommandDropComponent } from './drop-component/linux-command-drop.component';
 import { LinuxCommandComponent } from './linux-command.component';
 import { LinuxCommandRoutesModule } from './linux-command.routes.module';
+import { LinuxCommandResultComponent } from './result-component/linux-command-result.component';
+import { LinuxCommandSourceComponent } from './source-component/linux-command-source.component';
+
 
 
 @NgModule({
@@ -17,7 +21,10 @@ import { LinuxCommandRoutesModule } from './linux-command.routes.module';
     ],
     declarations: [
         LinuxCommandComponent,
-        LinuxCommandDragComponent
+        LinuxCommandDragComponent,
+        LinuxCommandDropComponent,
+        LinuxCommandResultComponent,
+        LinuxCommandSourceComponent
     ],
     providers: []
 })
