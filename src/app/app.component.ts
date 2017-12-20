@@ -3,6 +3,7 @@
  */
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { environment } from 'environments/environment';
+
 import { AppState } from './app.service';
 
 /**
@@ -41,6 +42,10 @@ import { AppState } from './app.service';
          routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
         DevModule
       </a>
+      <a [routerLink]=" ['./linux-command'] "
+      routerLinkActive="active" [routerLinkActiveOptions]= "{exact: true}">
+      Linux-Command
+    </a>
     </nav>
 
     <main>
@@ -68,7 +73,7 @@ export class AppComponent implements OnInit {
 
   constructor(
     public appState: AppState
-  ) {}
+  ) { }
 
   public ngOnInit() {
     console.log('Initial App State', this.appState.state);
