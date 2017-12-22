@@ -10,6 +10,7 @@ import { LinuxCommandComponent } from './linux-command.component';
 import { LinuxCommandRoutesModule } from './linux-command.routes.module';
 import { LinuxCommandResultComponent } from './result-component/linux-command-result.component';
 import { LinuxCommandSourceComponent } from './source-component/linux-command-source.component';
+import { LinuxCommandDragElementComponent } from './drag-element-component/linux-command-drag-element.component';
 
 
 
@@ -26,8 +27,12 @@ import { LinuxCommandSourceComponent } from './source-component/linux-command-so
         LinuxCommandDragComponent,
         LinuxCommandDropComponent,
         LinuxCommandResultComponent,
-        LinuxCommandSourceComponent
+        LinuxCommandSourceComponent,
+        LinuxCommandDragElementComponent
     ],
-    providers: []
+    providers: [],
+    exports: [
+        LinuxCommandDragElementComponent
+    ]
 })
 export class LinuxCommandModule { }

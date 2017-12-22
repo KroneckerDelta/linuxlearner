@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Commands } from '../enums/enums';
 
 @Component({
     selector: 'linux-command-drag',
@@ -8,14 +9,22 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 export class LinuxCommandDragComponent implements OnInit, OnDestroy {
 
     private name: string = 'LinuxCommandDragComponent';
+    private commands: string[];
 
     constructor() { }
 
     public ngOnInit() {
         console.log(this.name + '.ngOnInit()');
+        this.enumToArray();
     }
 
     public ngOnDestroy() {
         console.log(this.name + '.ngOnDestroy()');
     }
+
+    private enumToArray(): void {
+        let keys = Object.keys(Commands);
+        this.commands = keys.slice(keys.length / 2);
+    }
+
 }

@@ -1,8 +1,8 @@
 <h2>LinuxCommandDragComponent</h2>
 <ul>
-  <li class="nav a" draggable>grep</li>
-  <li draggable>sed</li>
-  <li draggable>find</li>
+  <li class="drag-handle" *ngFor="let command of commands" draggable>
+    <linux-command-drag-element value="{{command}}"></linux-command-drag-element>
+  </li>
   <li draggable [dragImage]="'../../../assets/icon/android-icon-36x36.png'">
     Not Draggable by list item but by the handle only.
     <div class="pull-right">
