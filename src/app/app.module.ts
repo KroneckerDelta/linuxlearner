@@ -20,8 +20,6 @@ import { XLargeDirective } from './home/x-large';
 import { LinuxCommandModule } from './linux-command/linux-command.module';
 import { NoContentComponent } from './no-content';
 
-
-
 /*
  * Platform and Environment providers/directives/pipes
  */
@@ -48,7 +46,8 @@ type StoreType = {
     AboutComponent,
     HomeComponent,
     NoContentComponent,
-    XLargeDirective
+    XLargeDirective,
+
   ],
   /**
    * Import Angular's modules.

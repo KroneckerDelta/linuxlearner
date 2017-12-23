@@ -8,6 +8,10 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 export class LinuxCommandDropComponent implements OnInit, OnDestroy {
 
     private name: string = 'LinuxCommandDropComponent';
+    
+    restrictedDrop1: any = null;
+    restrictedDrop2: any = null;
+    simpleDrop: any = null;
 
     constructor() { }
 

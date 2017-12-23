@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+
 import { Commands } from '../enums/enums';
 
 @Component({
@@ -10,13 +11,15 @@ export class LinuxCommandDragComponent implements OnInit, OnDestroy {
 
     private name: string = 'LinuxCommandDragComponent';
     private commands: string[];
-
+    simpleDrop: any = null;
     constructor() { }
+
 
     public ngOnInit() {
         console.log(this.name + '.ngOnInit()');
         this.enumToArray();
     }
+
 
     public ngOnDestroy() {
         console.log(this.name + '.ngOnDestroy()');
