@@ -1,7 +1,7 @@
 export enum Commands {
     grep,
     sed,
-    find
+    wc
 }
 
 export enum GrepOptions {
