@@ -12,6 +12,9 @@ export class LinuxCommandDragComponent implements OnInit, OnDestroy {
     private name: string = 'LinuxCommandDragComponent';
     private commands: string[];
     simpleDrop: any = null;
+
+    myCommand: Object = { id: 1, msg: 'grep' };
+
     constructor() { }
 
 

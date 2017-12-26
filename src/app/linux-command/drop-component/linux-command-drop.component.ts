@@ -8,10 +8,19 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 export class LinuxCommandDropComponent implements OnInit, OnDestroy {
 
     private name: string = 'LinuxCommandDropComponent';
-    
+
     restrictedDrop1: any = null;
     restrictedDrop2: any = null;
     simpleDrop: any = null;
+
+
+    transferData: Object = { id: 1, msg: 'Hello' };
+    receivedData: Array<String> = [];
+
+    transferDataSuccess($event: any) {
+        console.log('Drop', $event);
+        this.receivedData.push($event);
+    }
 
     constructor() { }
 
@@ -25,7 +34,7 @@ export class LinuxCommandDropComponent implements OnInit, OnDestroy {
 
     val = 500;
     isDropAllowed = (dragData: any) => {
-        console.log('drop');
+        console.log('drop', dragData);
         return dragData > this.val;
     }
 }
