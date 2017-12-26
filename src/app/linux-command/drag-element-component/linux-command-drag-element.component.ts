@@ -10,8 +10,6 @@ export class LinuxCommandDragElementComponent implements OnInit, OnDestroy {
     @Input('value') public value: string;
     private name: string = 'LinuxCommandDragElementComponent';
 
-    private myValue: Object = { id: 1, msg: 'bla', blub: 'blub' };
-
     constructor() { }
 
     public ngOnInit() {

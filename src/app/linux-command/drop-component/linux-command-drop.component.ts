@@ -9,12 +9,6 @@ export class LinuxCommandDropComponent implements OnInit, OnDestroy {
 
     private name: string = 'LinuxCommandDropComponent';
 
-    restrictedDrop1: any = null;
-    restrictedDrop2: any = null;
-    simpleDrop: any = null;
-
-
-    transferData: Object = { id: 1, msg: 'Hello' };
     receivedData: Array<String> = [];
 
     transferDataSuccess($event: any) {
