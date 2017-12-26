@@ -5,9 +5,11 @@ export enum Commands {
 }
 
 export enum GrepOptions {
-    e,
-    i,
-    r,
-    o,
-    w
+    count,
+    fixedstrings,
+    ignorecase,
+    invertmatch,
+    linenumber,
+    matchingfiles,
+    wholeline
 }
