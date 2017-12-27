@@ -4,6 +4,6 @@
   <div class="panel-heading">Command: </div>
   <div class="panel-heading">Command (Items:{{receivedData.length}})</div>
   <div class="panel-body">
-    <div [hidden]="!receivedData.length > 0" *ngFor="let data of receivedData">{{data | json}}</div>
+    <div [hidden]="!receivedData.length > 0" *ngFor="let data of receivedData">{{data}}</div>
   </div>
 </div>

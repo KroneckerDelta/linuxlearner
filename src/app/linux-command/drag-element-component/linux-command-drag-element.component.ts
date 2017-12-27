@@ -1,4 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { LinuxCommand } from 'app/linux-command/model/models';
+
 
 @Component({
     selector: 'linux-command-drag-element',
@@ -7,7 +9,7 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 })
 export class LinuxCommandDragElementComponent implements OnInit, OnDestroy {
 
-    @Input('value') public value: string;
+    @Input('value') public value: LinuxCommand;
     private name: string = 'LinuxCommandDragElementComponent';
 
     constructor() { }
@@ -25,5 +27,3 @@ export class LinuxCommandDragElementComponent implements OnInit, OnDestroy {
     }
 
 }
-
-
