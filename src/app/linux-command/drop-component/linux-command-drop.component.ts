@@ -38,4 +38,10 @@ export class LinuxCommandDropComponent implements OnInit, OnDestroy {
         console.log('drop me now', dragData);
         return dragData > this.val;
     }
+
+    public getCommands(): string[] {
+        console.log('hier geht keiner rein!!!');
+        return this.receivedData.map(x => x.command);
+    }
+
 }
