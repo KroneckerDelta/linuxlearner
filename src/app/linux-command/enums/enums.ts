@@ -13,3 +13,9 @@ export enum GrepOptions {
     matchingfiles,
     wholeline
 }
+
+export enum WcOptions {
+    chars,
+    lines,
+    words
+}

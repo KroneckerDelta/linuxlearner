@@ -2,6 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { GrepOptions } from 'app/linux-command/enums/enums';
 import { LinuxCommand } from 'app/linux-command/model/models';
 
+import { WcOptions } from '../enums/enums';
+
 @Component({
     selector: 'linux-command-drop',
     styleUrls: ['./linux-command-drop.component.css'],
@@ -33,15 +35,26 @@ export class LinuxCommandDropComponent implements OnInit, OnDestroy {
         console.log(this.name + '.ngOnDestroy()');
     }
 
-    val = 500;
-    isDropAllowed = (dragData: any) => {
-        console.log('drop me now', dragData);
-        return dragData > this.val;
-    }
+    private dispatchCommand(command: string): LinuxCommand {
 
-    public getCommands(): string[] {
-        console.log('hier geht keiner rein!!!');
-        return this.receivedData.map(x => x.command);
-    }
+        switch (command) {
+            case 'grep':
+                let gkeys = Object.keys(GrepOptions);
+                let grepOptionsAsString = gkeys.slice(gkeys.length / 2)
+                return new LinuxCommand('grep', grepOptionsAsString);
+            case 'wc':
+                let wckeys = Object.keys(WcOptions);
+                let wcOptionsAsString = wckeys.slice(wckeys.length / 2)
+                return new LinuxCommand('wc', wcOptionsAsString);
+            case 'sed':
+                let sedkeys = Object.keys(WcOptions);
+                let sedOptionsAsString = wckeys.slice(sedkeys.length / 2)
+                return new LinuxCommand('not Implemented', wcOptionsAsString);
 
+            default:
+                let def = Object.keys(WcOptions);
+                let defaultOptionsAsString = wckeys.slice(def.length / 2)
+                return new LinuxCommand('not Implemented', defaultOptionsAsString);
+        }
+    }
 }

@@ -1,7 +1,7 @@
 <h2>LinuxCommandDropComponent</h2>
 
 <div dnd-droppable class="panel panel-info" (onDropSuccess)="transferDataSuccess($event)">
-  <div class="panel-heading">Command (Items:{{getCommands().length}})</div>
+  <div class="panel-heading">Command (Items:{{receivedData.length}})</div>
   <div class="panel-body">
     <div [hidden]="!receivedData.length > 0" *ngFor="let data of receivedData">
       <div>{{data.command}}
