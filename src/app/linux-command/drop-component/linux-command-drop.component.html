@@ -5,7 +5,10 @@
   <div class="panel-body">
     <div [hidden]="!receivedData.length > 0" *ngFor="let data of receivedData">
       <div>{{data.command}}
-        <div *ngFor="let o of data.options">{{o}}
+        <select name="options">
+          <option *ngFor="let o of data.options">{{o}}</option>
+        </select>
+        <div>
 
         </div>
       </div>
