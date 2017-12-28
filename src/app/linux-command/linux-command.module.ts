@@ -1,6 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { DndModule } from 'ng2-dnd';
 
@@ -10,6 +11,7 @@ import { LinuxCommandDropComponent } from './drop-component/linux-command-drop.c
 import { LinuxCommandComponent } from './linux-command.component';
 import { LinuxCommandRoutesModule } from './linux-command.routes.module';
 import { LinuxCommandResultComponent } from './result-component/linux-command-result.component';
+import { LinuxCommandService } from './service/linux-command-service';
 import { LinuxCommandSourceComponent } from './source-component/linux-command-source.component';
 
 
@@ -20,6 +22,7 @@ import { LinuxCommandSourceComponent } from './source-component/linux-command-so
         FormsModule,
         HttpClientModule,
         LinuxCommandRoutesModule,
+        HttpModule,
         DndModule.forRoot()
     ],
     declarations: [
@@ -29,8 +32,9 @@ import { LinuxCommandSourceComponent } from './source-component/linux-command-so
         LinuxCommandResultComponent,
         LinuxCommandSourceComponent,
         LinuxCommandDragElementComponent
+
     ],
-    providers: [],
+    providers: [LinuxCommandService],
     exports: [
         LinuxCommandDragElementComponent
     ]

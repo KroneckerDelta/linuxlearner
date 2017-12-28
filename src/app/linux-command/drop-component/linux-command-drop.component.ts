@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { GrepOptions } from 'app/linux-command/enums/enums';
 import { LinuxCommand } from 'app/linux-command/model/models';
+import { LinuxCommandService } from 'app/linux-command/service/linux-command-service';
 
 import { WcOptions } from '../enums/enums';
 
@@ -20,7 +21,7 @@ export class LinuxCommandDropComponent implements OnInit, OnDestroy {
         this.receivedData.push(this.dispatchCommand(x));
     }
 
-    constructor() { }
+    constructor(private linuxCommandService: LinuxCommandService) { }
 
     public ngOnInit() {
         console.log(this.name + '.ngOnInit()');
@@ -55,6 +56,19 @@ export class LinuxCommandDropComponent implements OnInit, OnDestroy {
 
     public onOptionChange(lc: LinuxCommand, o: string) {
         console.log('ChangedOption: ', lc, ' mit ', lc.currentOption);
+        let xSome = this.linuxCommandService.postData(this.convertListToPostable());
+        console.log('was ist der Post??', xSome);
 
+    }
+
+    private convertListToPostable(): string {
+        return JSON.stringify(
+            {
+                "command": "wc",
+                "source": "Dieser Text wird gegrept",
+                "schalter": "words",
+                "pipe": null
+
+            });
     }
 }
