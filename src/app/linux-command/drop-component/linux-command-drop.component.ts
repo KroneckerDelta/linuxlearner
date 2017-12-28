@@ -52,4 +52,9 @@ export class LinuxCommandDropComponent implements OnInit, OnDestroy {
                 return new LinuxCommand('not Implemented', defaultOptionsAsString);
         }
     }
+
+    public onOptionChange(lc: LinuxCommand, o: string) {
+        console.log('ChangedOption: ', lc, ' mit ', lc.currentOption);
+
+    }
 }

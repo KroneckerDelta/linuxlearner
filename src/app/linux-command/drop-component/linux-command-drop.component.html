@@ -5,7 +5,7 @@
   <div class="panel-body">
     <div [hidden]="!receivedData.length > 0" *ngFor="let data of receivedData">
       <div>{{data.command}}
-        <select name="options">
+        <select name="options" (change)="onOptionChange(data, o)" [(ngModel)]="data.currentOption">
           <option *ngFor="let o of data.options">{{o}}</option>
         </select>
         <div>
