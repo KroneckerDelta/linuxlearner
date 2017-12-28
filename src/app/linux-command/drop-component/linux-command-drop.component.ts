@@ -41,21 +41,21 @@ export class LinuxCommandDropComponent implements OnInit, OnDestroy {
 
         switch (command) {
             case 'grep':
-                let gkeys = Object.keys(GrepOptions);
-                let grepOptionsAsString = gkeys.slice(gkeys.length / 2);
+                const gkeys = Object.keys(GrepOptions);
+                const grepOptionsAsString = gkeys.slice(gkeys.length / 2);
                 return new LinuxCommand('grep', grepOptionsAsString);
             case 'wc':
-                let wckeys = Object.keys(WcOptions);
-                let wcOptionsAsString = wckeys.slice(wckeys.length / 2);
+                const wckeys = Object.keys(WcOptions);
+                const wcOptionsAsString = wckeys.slice(wckeys.length / 2);
                 return new LinuxCommand('wc', wcOptionsAsString);
             case 'sed':
-                let sedkeys = Object.keys(WcOptions);
-                let sedOptionsAsString = sedkeys.slice(sedkeys.length / 2);
+                const sedkeys = Object.keys(WcOptions);
+                const sedOptionsAsString = sedkeys.slice(sedkeys.length / 2);
                 return new LinuxCommand('not Implemented', wcOptionsAsString);
 
             default:
-                let def = Object.keys(WcOptions);
-                let defaultOptionsAsString = wckeys.slice(def.length / 2);
+                const def = Object.keys(WcOptions);
+                const defaultOptionsAsString = wckeys.slice(def.length / 2);
                 return new LinuxCommand('not Implemented', defaultOptionsAsString);
         }
     }

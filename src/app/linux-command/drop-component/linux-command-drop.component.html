@@ -1,18 +1,20 @@
-<h2>LinuxCommandDropComponent</h2>
+<div class="drop-component">
+  <h2>LinuxCommandDropComponent</h2>
 
-<div dnd-droppable class="panel panel-info" (onDropSuccess)="transferDataSuccess($event)">
-  <div class="panel-heading">Command (Items:{{receivedData.length}})</div>
-  <div class="panel-body">
-    <div [hidden]="!receivedData.length > 0" *ngFor="let data of receivedData">
-      <div>{{data.command}}
-        <select name="options" (change)="onOptionChange(data, o)" [(ngModel)]="data.currentOption">
-          <option *ngFor="let o of data.options">{{o}}</option>
-        </select>
-        <div>
+  <div dnd-droppable class="panel panel-info" (onDropSuccess)="transferDataSuccess($event)">
+    <div class="panel-heading">Command (Items:{{receivedData.length}})</div>
+    <div class="panel-body">
+      <div [hidden]="!receivedData.length > 0" *ngFor="let data of receivedData">
+        <div>{{data.command}}
+          <select name="options" (change)="onOptionChange(data, o)" [(ngModel)]="data.currentOption">
+            <option *ngFor="let o of data.options">{{o}}</option>
+          </select>
+          <div>
 
+          </div>
         </div>
-      </div>
 
+      </div>
     </div>
   </div>
 </div>
