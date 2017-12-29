@@ -1,0 +1,8 @@
+.command-line-component {
+  background-color: #000000;
+  color: rgb(68, 216, 68);
+  font-family: Courier;
+  height: 100%;
+  margin-top: 5px;
+  padding: 20px 20px 20px 20px;
+}
