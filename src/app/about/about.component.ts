@@ -1,7 +1,4 @@
-import {
-  Component,
-  OnInit
-} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -11,15 +8,16 @@ import { ActivatedRoute } from '@angular/router';
   template: `
     <h1>About</h1>
     <div>
-      For hot module reloading run
-      <pre>npm run start:hmr</pre>
+      This is a private project from Thomas Michael.
+
+     
     </div>
+    <div> Project is under MIT License. </div>
     <div>
       <h3>
-        patrick@tipe.io
+        thomas.michael[at]anmi24.de
       </h3>
     </div>
-    <pre>this.localState = {{ localState | json }}</pre>
   `
 })
 export class AboutComponent implements OnInit {
@@ -27,7 +25,7 @@ export class AboutComponent implements OnInit {
   public localState: any;
   constructor(
     public route: ActivatedRoute
-  ) {}
+  ) { }
 
   public ngOnInit() {
     this.route
