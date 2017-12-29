@@ -13,13 +13,7 @@ import { WcOptions } from '../enums/enums';
 export class LinuxCommandDropComponent implements OnInit, OnDestroy {
 
     private name: string = 'LinuxCommandDropComponent';
-
-    receivedData: Array<LinuxCommand> = [];
-
-    transferDataSuccess($event: any) {
-        let x = $event.dragData;
-        this.receivedData.push(this.dispatchCommand(x));
-    }
+    private receivedData: Array<LinuxCommand> = [];
 
     constructor(private linuxCommandService: LinuxCommandService) { }
 
@@ -31,27 +25,9 @@ export class LinuxCommandDropComponent implements OnInit, OnDestroy {
         console.log(this.name + '.ngOnDestroy()');
     }
 
-    private dispatchCommand(command: string): LinuxCommand {
-
-        switch (command) {
-            case 'grep':
-                let gkeys = Object.keys(GrepOptions);
-                let grepOptionsAsString = gkeys.slice(gkeys.length / 2)
-                return new LinuxCommand('grep', grepOptionsAsString);
-            case 'wc':
-                let wckeys = Object.keys(WcOptions);
-                let wcOptionsAsString = wckeys.slice(wckeys.length / 2)
-                return new LinuxCommand('wc', wcOptionsAsString);
-            case 'sed':
-                let sedkeys = Object.keys(WcOptions);
-                let sedOptionsAsString = sedkeys.slice(sedkeys.length / 2)
-                return new LinuxCommand('not Implemented', wcOptionsAsString);
-
-            default:
-                let def = Object.keys(WcOptions);
-                let defaultOptionsAsString = wckeys.slice(def.length / 2)
-                return new LinuxCommand('not Implemented', defaultOptionsAsString);
-        }
+    public transferDataSuccess($event: any) {
+        let x = $event.dragData;
+        this.receivedData.push(this.dispatchCommand(x));
     }
 
     public onOptionChange(lc: LinuxCommand, o: string) {
@@ -61,13 +37,36 @@ export class LinuxCommandDropComponent implements OnInit, OnDestroy {
 
     }
 
+    private dispatchCommand(command: string): LinuxCommand {
+
+        switch (command) {
+            case 'grep':
+                const gkeys = Object.keys(GrepOptions);
+                const grepOptionsAsString = gkeys.slice(gkeys.length / 2);
+                return new LinuxCommand('grep', grepOptionsAsString);
+            case 'wc':
+                const wckeys = Object.keys(WcOptions);
+                const wcOptionsAsString = wckeys.slice(wckeys.length / 2);
+                return new LinuxCommand('wc', wcOptionsAsString);
+            case 'sed':
+                const sedkeys = Object.keys(WcOptions);
+                const sedOptionsAsString = sedkeys.slice(sedkeys.length / 2);
+                return new LinuxCommand('not Implemented', wcOptionsAsString);
+
+            default:
+                const def = Object.keys(WcOptions);
+                const defaultOptionsAsString = wckeys.slice(def.length / 2);
+                return new LinuxCommand('not Implemented', defaultOptionsAsString);
+        }
+    }
+
     private convertListToPostable(): string {
         return JSON.stringify(
             {
-                "command": "wc",
-                "source": "Dieser Text wird gegrept",
-                "schalter": "words",
-                "pipe": null
+                command: 'wc',
+                source: 'Dieser Text wird gegrept',
+                schalter: 'words',
+                pipe: 'null'
 
             });
     }

@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit, OnChanges } from '@angular/core';
 import { LinuxCommand } from 'app/linux-command/model/models';
 
 
@@ -7,7 +7,7 @@ import { LinuxCommand } from 'app/linux-command/model/models';
     styleUrls: ['./linux-command-drag-element.component.scss'],
     templateUrl: './linux-command-drag-element.component.html'
 })
-export class LinuxCommandDragElementComponent implements OnInit, OnDestroy {
+export class LinuxCommandDragElementComponent implements OnInit, OnDestroy, OnChanges {
 
     @Input('value') public value: LinuxCommand;
     private name: string = 'LinuxCommandDragElementComponent';
