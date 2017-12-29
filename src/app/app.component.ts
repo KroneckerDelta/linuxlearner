@@ -42,10 +42,10 @@ import { AppState } from './app.service';
   `
 })
 export class AppComponent implements OnInit {
-  public name = 'Angular Starter';
+  public name = 'Linux Learner App';
   public tipe = 'assets/img/tipe.png';
-  public twitter = 'https://twitter.com/gdi2290';
-  public url = 'https://tipe.io';
+  public twitter = '...';
+  public url = 'https://linuxlearner.herokuapp.com';
   public showDevModule: boolean = environment.showDevModule;
 
   constructor(

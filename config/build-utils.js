@@ -4,7 +4,7 @@ const fs = require('fs');
 const helpers = require('./helpers');
 
 const DEFAULT_METADATA = {
-  title: 'Angular Starter by @gdi2290 from @TipeIO',
+  title: 'Linux Leaner by @Thomas Michael',
   baseUrl: '/',
   isDevServer: helpers.isWebpackDevServer(),
   HMR: helpers.hasProcessFlag('hot'),
@@ -103,14 +103,16 @@ function ngcWebpackSetup(prod, metadata) {
     }
   };
 
-  const loaders = [
-    {
+  const loaders = [{
       test: /(?:\.ngfactory\.js|\.ngstyle\.js|\.ts)$/,
-      use: metadata.AOT && buildOptimizer ? [ buildOptimizerLoader, '@ngtools/webpack' ] : [ '@ngtools/webpack' ]
+      use: metadata.AOT && buildOptimizer ? [buildOptimizerLoader, '@ngtools/webpack'] : ['@ngtools/webpack']
     },
-    ...buildOptimizer
-      ? [ { test: /\.js$/, use: [ buildOptimizerLoader ] } ]
-      : []
+    ...buildOptimizer ?
+    [{
+      test: /\.js$/,
+      use: [buildOptimizerLoader]
+    }] :
+    []
   ];
 
   return {
