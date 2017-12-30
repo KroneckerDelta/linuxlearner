@@ -1,8 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { GrepOptions } from 'app/linux-command/enums/enums';
 import { LinuxCommand } from 'app/linux-command/model/models';
-import { LinuxCommandService } from 'app/linux-command/service/linux-command-service';
-
+import { LinuxCommandService, LinuxCommandLineService } from 'app/linux-command/service';
 import { WcOptions } from '../enums/enums';
 
 @Component({
@@ -15,7 +14,10 @@ export class LinuxCommandDropComponent implements OnInit, OnDestroy {
     private name: string = 'LinuxCommandDropComponent';
     private receivedData: Array<LinuxCommand> = [];
 
-    constructor(private linuxCommandService: LinuxCommandService) { }
+    constructor(
+        private linuxCommandService: LinuxCommandService,
+        private linuxCommandLineService: LinuxCommandLineService
+    ) { }
 
     public ngOnInit() {
         console.log(this.name + '.ngOnInit()');
@@ -32,7 +34,12 @@ export class LinuxCommandDropComponent implements OnInit, OnDestroy {
 
     public onOptionChange(lc: LinuxCommand, o: string) {
         console.log('ChangedOption: ', lc, ' mit ', lc.currentOption);
-        let xSome = this.linuxCommandService.postData(this.convertListToPostable());
+        const xSome = this.linuxCommandService.postData(this.convertListToPostable());
+
+        this.linuxCommandLineService.setCurrentCommandLine(
+            this.linuxCommandLineService.getCurrenCommandLineValue() + ' --' + lc.currentOption
+        );
+
         console.log('was ist der Post??', xSome);
 
     }
@@ -43,14 +50,17 @@ export class LinuxCommandDropComponent implements OnInit, OnDestroy {
             case 'grep':
                 const gkeys = Object.keys(GrepOptions);
                 const grepOptionsAsString = gkeys.slice(gkeys.length / 2);
+                this.linuxCommandLineService.setCurrentCommandLine('grep');
                 return new LinuxCommand('grep', grepOptionsAsString);
             case 'wc':
                 const wckeys = Object.keys(WcOptions);
                 const wcOptionsAsString = wckeys.slice(wckeys.length / 2);
+                this.linuxCommandLineService.setCurrentCommandLine('wc');
                 return new LinuxCommand('wc', wcOptionsAsString);
             case 'sed':
                 const sedkeys = Object.keys(WcOptions);
                 const sedOptionsAsString = sedkeys.slice(sedkeys.length / 2);
+                this.linuxCommandLineService.setCurrentCommandLine('sed');
                 return new LinuxCommand('not Implemented', wcOptionsAsString);
 
             default:

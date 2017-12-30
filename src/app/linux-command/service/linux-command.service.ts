@@ -21,5 +21,5 @@ export class LinuxCommandService {
     }
     private handleError(error: Response): Promise<any> {
         return Promise.reject(error);
-    };
+    }
 }
