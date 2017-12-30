@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
   template: `
     <h1>About</h1>
     <div>
-      This is a private project from Thomas Michael and Maik Rohde.
+      This is a private project by Thomas Michael and Maik Rohde.
 
      
     </div>
