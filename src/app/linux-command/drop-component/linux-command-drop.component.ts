@@ -12,7 +12,7 @@ import { WcOptions } from '../enums/enums';
 export class LinuxCommandDropComponent implements OnInit, OnDestroy {
 
     private name: string = 'LinuxCommandDropComponent';
-    private receivedData: Array<LinuxCommand> = [];
+    private receivedData: LinuxCommand[] = [];
 
     constructor(
         private linuxCommandService: LinuxCommandService,
@@ -44,6 +44,9 @@ export class LinuxCommandDropComponent implements OnInit, OnDestroy {
 
     }
 
+    public deleteItem(command2Remove: LinuxCommand){
+       this.receivedData = this.receivedData.filter((item) => item !==command2Remove);
+    }
     private dispatchCommand(command: string): LinuxCommand {
 
         switch (command) {
@@ -81,7 +84,4 @@ export class LinuxCommandDropComponent implements OnInit, OnDestroy {
             });
     }
 
-     deleteItem(a: LinuxCommand){
-       this.receivedData = this.receivedData.filter(f => f !=a);
-    }
 }
