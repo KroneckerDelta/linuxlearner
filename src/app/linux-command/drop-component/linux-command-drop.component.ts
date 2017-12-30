@@ -35,7 +35,7 @@ export class LinuxCommandDropComponent implements OnInit, OnDestroy {
     public onOptionChange(lc: LinuxCommand, o: string) {
         console.log('ChangedOption: ', lc, ' mit ', lc.currentOption);
         const xSome = this.linuxCommandService.postData(this.convertListToPostable());
-
+        console.log('REST: ', xSome);
         this.linuxCommandLineService.setCurrentCommandLine(
             this.linuxCommandLineService.getCurrenCommandLineValue() + ' --' + lc.currentOption
         );

@@ -5,16 +5,14 @@
     <div class="panel-heading">Command (Items:{{receivedData.length}})</div>
     <div class="panel-body">
       <div [hidden]="!receivedData.length > 0" *ngFor="let data of receivedData">
-        <div>{{data.command}}
-          <select name="options" (change)="onOptionChange(data, o)" [(ngModel)]="data.currentOption">
+          <div>{{data.command}}
+            <select name="options" (change)="onOptionChange(data, o)" [(ngModel)]="data.currentOption">
             <option *ngFor="let o of data.options">{{o}}</option>
           </select>
-          <div>
-
+              <input type="text" [(ngModel)]="data.pattern">
           </div>
         </div>
 
       </div>
-    </div>
   </div>
 </div>
