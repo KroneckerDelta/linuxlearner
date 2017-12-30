@@ -1,8 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { GrepOptions } from 'app/linux-command/enums/enums';
 import { LinuxCommand } from 'app/linux-command/model/models';
-import { LinuxCommandService, LinuxCommandLineService } from 'app/linux-command/service';
+import { LinuxCommandLineService, LinuxCommandService } from 'app/linux-command/service';
+import { LinuxCommandResultService } from 'app/linux-command/service/linux-command-result.service';
+
 import { WcOptions } from '../enums/enums';
+import { LinuxCommandSourceService } from '../service/linux-command-source.service';
 
 @Component({
     selector: 'linux-command-drop',
@@ -16,7 +19,9 @@ export class LinuxCommandDropComponent implements OnInit, OnDestroy {
 
     constructor(
         private linuxCommandService: LinuxCommandService,
-        private linuxCommandLineService: LinuxCommandLineService
+        private linuxCommandLineService: LinuxCommandLineService,
+        private linuxCommandSourceService: LinuxCommandSourceService,
+        private linuxCommandResultService: LinuxCommandResultService
     ) { }
 
     public ngOnInit() {
@@ -34,18 +39,18 @@ export class LinuxCommandDropComponent implements OnInit, OnDestroy {
 
     public onOptionChange(lc: LinuxCommand, o: string) {
         console.log('ChangedOption: ', lc, ' mit ', lc.currentOption);
-        const xSome = this.linuxCommandService.postData(this.convertListToPostable());
-        console.log('REST: ', xSome);
+        this.linuxCommandService.postData(this.convertListToPostable()).subscribe((result) => {
+            console.log('REST: ', result);
+
+            this.linuxCommandResultService.setResultContent(result.text());
+        });
         this.linuxCommandLineService.setCurrentCommandLine(
             this.linuxCommandLineService.getCurrenCommandLineValue() + ' --' + lc.currentOption
         );
-
-        console.log('was ist der Post??', xSome);
-
     }
 
-    public deleteItem(command2Remove: LinuxCommand){
-       this.receivedData = this.receivedData.filter((item) => item !==command2Remove);
+    public deleteItem(command2Remove: LinuxCommand) {
+        this.receivedData = this.receivedData.filter((item) => item !== command2Remove);
     }
     private dispatchCommand(command: string): LinuxCommand {
 
@@ -77,9 +82,9 @@ export class LinuxCommandDropComponent implements OnInit, OnDestroy {
         return JSON.stringify(
             {
                 command: 'wc',
-                source: 'Dieser Text wird gegrept',
+                source: 'Dieser Text wird gegrept, wirklich!',
                 schalter: 'words',
-                pipe: 'null'
+                pipe: null
 
             });
     }

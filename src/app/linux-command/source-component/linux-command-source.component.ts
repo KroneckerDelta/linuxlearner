@@ -1,5 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
+import { LinuxCommandResultService } from '../service/linux-command-result.service';
+
 @Component({
     selector: 'linux-command-source',
     styleUrls: ['./linux-command-source.component.css'],
@@ -9,7 +11,7 @@ export class LinuxCommandSourceComponent implements OnInit, OnDestroy {
 
     private name: string = 'LinuxCommandSourceComponent';
     private source: string = '';
-    constructor() {
+    constructor(private linuxResultService: LinuxCommandResultService) {
         this.source = this.sampledata();
     }
 
@@ -19,9 +21,8 @@ export class LinuxCommandSourceComponent implements OnInit, OnDestroy {
 
     public ngOnDestroy() {
         console.log(this.name + '.ngOnDestroy()');
+
     }
-
-
 
     private sampledata(): string {
         return "This is an example! Change it! " +

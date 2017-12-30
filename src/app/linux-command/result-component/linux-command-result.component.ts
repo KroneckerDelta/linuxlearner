@@ -1,4 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
+
+import { LinuxCommandResultService } from '../service/linux-command-result.service';
 
 @Component({
     selector: 'linux-command-result',
@@ -8,8 +11,13 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 export class LinuxCommandResultComponent implements OnInit, OnDestroy {
 
     private name: string = 'LinuxCommandResultComponent';
-
-    constructor() { }
+    private result: string = '';
+    private subscription: Subscription;
+    constructor(private linuxCommandSourceService: LinuxCommandResultService) {
+        this.subscription = linuxCommandSourceService.getResultAsObservable().subscribe((value) => {
+            this.result = value;
+        });
+    }
 
     public ngOnInit() {
         console.log(this.name + '.ngOnInit()');

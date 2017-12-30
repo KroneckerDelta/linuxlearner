@@ -4,7 +4,7 @@ import { Headers, Http } from '@angular/http';
 @Injectable()
 export class LinuxCommandService {
     public jsonHeaders = new Headers({ 'Content-Type': 'application/json' });
-    private url: string = 'https://linuxlearner.herokuapp.com/api/command/';
+    private url: string = 'http://localhost:8888/api/command/';
 
     constructor(private http: Http) { }
 
