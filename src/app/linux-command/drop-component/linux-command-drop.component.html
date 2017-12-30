@@ -9,7 +9,7 @@
             <select name="options" (change)="onOptionChange(data, o)" [(ngModel)]="data.currentOption">
             <option *ngFor="let o of data.options">{{o}}</option>
           </select>
-              <input type="text" [(ngModel)]="data.pattern">
+              <input [hidden]="data.command==='wc'" type="text" [(ngModel)]="data.pattern">
           </div>
         </div>
 
