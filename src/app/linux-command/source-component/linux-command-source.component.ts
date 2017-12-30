@@ -8,8 +8,10 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 export class LinuxCommandSourceComponent implements OnInit, OnDestroy {
 
     private name: string = 'LinuxCommandSourceComponent';
-
-    constructor() { }
+    private source: string = '';
+    constructor() {
+        this.source = this.sampledata();
+    }
 
     public ngOnInit() {
         console.log(this.name + '.ngOnInit()');
@@ -17,5 +19,18 @@ export class LinuxCommandSourceComponent implements OnInit, OnDestroy {
 
     public ngOnDestroy() {
         console.log(this.name + '.ngOnDestroy()');
+    }
+
+
+
+    private sampledata(): string {
+        return "This is an example! Change it! " +
+            "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna" +
+            "aliquyam erat, sed diam voluptua.At vero eos et accusam et justo duo dolores et ea rebum.Stet clita kasd gubergren," +
+            "no sea takimata sanctus est Lorem ipsum dolor sit amet.Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed" +
+            "diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.At vero eos et accusam" +
+            "et justo duo dolores et ea rebum.Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.";
+
+
     }
 }

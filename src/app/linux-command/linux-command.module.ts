@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
+import { LinuxCommandSourceService } from 'app/linux-command/service/linux-command-source.service';
 import { DndModule } from 'ng2-dnd';
 
 import { LinuxCommandLineComponent } from './command-line-component/linux-command-line.component';
@@ -38,7 +39,8 @@ import { LinuxCommandSourceComponent } from './source-component/linux-command-so
     ],
     providers: [
         LinuxCommandService,
-        LinuxCommandLineService
+        LinuxCommandLineService,
+        LinuxCommandSourceService
     ],
     exports: [
         LinuxCommandDragElementComponent

@@ -1,10 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { GrepOptions } from 'app/linux-command/enums/enums';
-import { LinuxCommand } from 'app/linux-command/model/models';
-import { Subscription } from 'rxjs';
 import { LinuxCommandLineService } from 'app/linux-command/service';
-
-import { WcOptions } from '../enums/enums';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'linux-command-line',
@@ -22,6 +18,7 @@ export class LinuxCommandLineComponent implements OnInit, OnDestroy {
         private linuxCommandLineService: LinuxCommandLineService
     ) {
         this.subscription = linuxCommandLineService.getCurrentCommandLine().subscribe((value) => {
+            console.log('neuer Wert: ' + value);
             this.commandLine = this.prompt + ' ' + value;
         });
 
@@ -33,6 +30,6 @@ export class LinuxCommandLineComponent implements OnInit, OnDestroy {
 
     public ngOnDestroy() {
         console.log(this.name + '.ngOnDestroy()');
-       this.subscription.unsubscribe();
+        this.subscription.unsubscribe();
     }
 }
