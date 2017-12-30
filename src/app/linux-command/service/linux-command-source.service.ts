@@ -4,20 +4,20 @@ import { BehaviorSubject, Observable } from 'rxjs';
 @Injectable()
 export class LinuxCommandSourceService {
 
-    private currentSourceContent: BehaviorSubject<string> = new BehaviorSubject('');
+    private sourceContent: BehaviorSubject<string> = new BehaviorSubject('');
 
     constructor() { }
 
-    public getCurrentSourceContent(): Observable<string> {
-        return this.currentSourceContent.asObservable();
+    public getSourceAsObservable(): Observable<string> {
+        return this.sourceContent.asObservable();
     }
 
-    public setCurrentSourceContent(line: string): void {
-        this.currentSourceContent.next(line);
+    public setSourceContent(line: string): void {
+        this.sourceContent.next(line);
     }
 
     public getSourceValue(): string {
-        return this.currentSourceContent.getValue();
+        return this.sourceContent.getValue();
     }
 
 }
