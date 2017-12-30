@@ -80,4 +80,8 @@ export class LinuxCommandDropComponent implements OnInit, OnDestroy {
 
             });
     }
+
+     deleteItem(a: LinuxCommand){
+       this.receivedData = this.receivedData.filter(f => f !=a);
+    }
 }
