@@ -33,5 +33,6 @@ export class LinuxCommandLineComponent implements OnInit, OnDestroy {
 
     public ngOnDestroy() {
         console.log(this.name + '.ngOnDestroy()');
+       this.subscription.unsubscribe();
     }
 }
