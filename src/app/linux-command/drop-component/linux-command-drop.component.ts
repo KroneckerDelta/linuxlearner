@@ -5,6 +5,7 @@ import { LinuxCommandLineService, LinuxCommandService } from 'app/linux-command/
 import { LinuxCommandResultService } from 'app/linux-command/service/linux-command-result.service';
 
 import { WcOptions } from '../enums/enums';
+import { LinuxCommandAPI } from '../model/models';
 import { LinuxCommandSourceService } from '../service/linux-command-source.service';
 
 @Component({
@@ -50,21 +51,20 @@ export class LinuxCommandDropComponent implements OnInit, OnDestroy {
     }
     private dispatchCommand(command: string): LinuxCommand {
 
+        this.linuxCommandLineService.setCurrentCommandLine(command);
+
         switch (command) {
             case 'grep':
                 const gkeys = Object.keys(GrepOptions);
                 const grepOptionsAsString = gkeys.slice(gkeys.length / 2);
-                this.linuxCommandLineService.setCurrentCommandLine('grep');
                 return new LinuxCommand('grep', grepOptionsAsString);
             case 'wc':
                 const wckeys = Object.keys(WcOptions);
                 const wcOptionsAsString = wckeys.slice(wckeys.length / 2);
-                this.linuxCommandLineService.setCurrentCommandLine('wc');
-                return new LinuxCommand('wc', wcOptionsAsString);
+                return new LinuxCommand('wc', wcOptionsAsString, null);
             case 'sed':
                 const sedkeys = Object.keys(WcOptions);
                 const sedOptionsAsString = sedkeys.slice(sedkeys.length / 2);
-                this.linuxCommandLineService.setCurrentCommandLine('sed');
                 return new LinuxCommand('not Implemented', wcOptionsAsString);
 
             default:
@@ -75,24 +75,31 @@ export class LinuxCommandDropComponent implements OnInit, OnDestroy {
     }
 
     private convertListToPostable(): string {
-        let firstElement = this.receivedData[0];
+        let result: LinuxCommandAPI = null;
 
-        if (firstElement) {
-
-        }
         this.receivedData.forEach((item, index) => {
             console.log('Item: ', item);
             console.log('index: ', index);
+            let lc = new LinuxCommandAPI(item);
+            if (index === 0) {
+                result = lc;
+                result.source = this.linuxCommandSourceService.getSourceValue();
+            } else {
+                result.pipe = lc;
+            }
         });
+        console.log('fertiges Command: ', result);
 
-        return JSON.stringify(
-            {
-                command: 'wc',
-                source: 'Dieser Text wird gegrept, wirklich!',
-                schalter: 'words',
-                pipe: null
+        return JSON.stringify(result);
 
-            });
+        // return JSON.stringify(
+        //     {
+        //         command: 'wc',
+        //         source: 'Dieser Text wird gegrept, wirklich!',
+        //         schalter: 'words',
+        //         pipe: null
+
+        //     });
     }
 
 }

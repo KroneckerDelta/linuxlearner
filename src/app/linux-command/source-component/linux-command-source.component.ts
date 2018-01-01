@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
-import { LinuxCommandResultService } from '../service/linux-command-result.service';
+import { LinuxCommandSourceService } from '../service/linux-command-source.service';
 
 @Component({
     selector: 'linux-command-source',
@@ -11,8 +11,14 @@ export class LinuxCommandSourceComponent implements OnInit, OnDestroy {
 
     private name: string = 'LinuxCommandSourceComponent';
     private source: string = '';
-    constructor(private linuxResultService: LinuxCommandResultService) {
+    constructor(private linuxSourceService: LinuxCommandSourceService) {
         this.source = this.sampledata();
+
+    }
+
+    public changeText() {
+        console.log('neueSource: ', this.source);
+        this.linuxSourceService.setSourceContent(this.source);
     }
 
     public ngOnInit() {

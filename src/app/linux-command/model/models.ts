@@ -9,18 +9,16 @@ export class LinuxCommand {
 }
 
 export class LinuxCommandAPI {
-    public command: string;
-    public pattern: string;
-    public schalter: string;
+    private command: string;
+    private pattern: string;
+    private schalter: string;
+    public source: string;
     public pipe: LinuxCommandAPI;
 
     constructor(lc: LinuxCommand) {
         this.command = lc.command;
         this.pattern = lc.pattern;
         this.schalter = lc.currentOption;
-    }
-    public setPipe(pipe: LinuxCommandAPI) {
-        this.pipe = pipe;
     }
 
 }

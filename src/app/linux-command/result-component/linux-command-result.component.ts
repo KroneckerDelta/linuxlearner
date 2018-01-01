@@ -13,8 +13,8 @@ export class LinuxCommandResultComponent implements OnInit, OnDestroy {
     private name: string = 'LinuxCommandResultComponent';
     private result: string = '';
     private subscription: Subscription;
-    constructor(private linuxCommandSourceService: LinuxCommandResultService) {
-        this.subscription = linuxCommandSourceService.getResultAsObservable().subscribe((value) => {
+    constructor(private linuxCommandResultService: LinuxCommandResultService) {
+        this.subscription = linuxCommandResultService.getResultAsObservable().subscribe((value) => {
             this.result = value;
         });
     }

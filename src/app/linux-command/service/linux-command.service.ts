@@ -4,12 +4,14 @@ import { Headers, Http } from '@angular/http';
 @Injectable()
 export class LinuxCommandService {
     public jsonHeaders = new Headers({ 'Content-Type': 'application/json' });
+    private url2: string = 'http://localhost:8888/api/command/';
     private url: string = 'https://linuxlearner.herokuapp.com/api/command/';
 
     constructor(private http: Http) { }
 
 
     public postData(object: string) {
+        console.log('REST: ', object);
         return this.http
             .post(this.url,
             object,
