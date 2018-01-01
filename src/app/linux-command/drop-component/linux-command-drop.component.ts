@@ -75,6 +75,16 @@ export class LinuxCommandDropComponent implements OnInit, OnDestroy {
     }
 
     private convertListToPostable(): string {
+        let firstElement = this.receivedData[0];
+
+        if (firstElement) {
+
+        }
+        this.receivedData.forEach((item, index) => {
+            console.log('Item: ', item);
+            console.log('index: ', index);
+        });
+
         return JSON.stringify(
             {
                 command: 'wc',
