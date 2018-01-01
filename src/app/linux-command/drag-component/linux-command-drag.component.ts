@@ -16,13 +16,11 @@ export class LinuxCommandDragComponent implements OnInit, OnDestroy {
 
 
     public ngOnInit() {
-        console.log(this.name + '.ngOnInit()');
         this.enumToArray();
     }
 
 
     public ngOnDestroy() {
-        console.log(this.name + '.ngOnDestroy()');
     }
 
     private enumToArray(): void {

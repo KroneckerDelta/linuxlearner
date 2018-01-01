@@ -25,11 +25,9 @@ export class LinuxCommandDropComponent implements OnInit, OnDestroy {
     ) { }
 
     public ngOnInit() {
-        console.log(this.name + '.ngOnInit()');
     }
 
     public ngOnDestroy() {
-        console.log(this.name + '.ngOnDestroy()');
     }
 
     public transferDataSuccess($event: any) {
@@ -38,9 +36,7 @@ export class LinuxCommandDropComponent implements OnInit, OnDestroy {
     }
 
     public onOptionChange(lc: LinuxCommand, o: string) {
-        console.log('ChangedOption: ', lc, ' mit ', lc.currentOption);
         this.linuxCommandService.postData(this.convertListToPostable()).subscribe((result) => {
-            console.log('REST: ', result);
 
             this.linuxCommandResultService.setResultContent(result.text());
         });

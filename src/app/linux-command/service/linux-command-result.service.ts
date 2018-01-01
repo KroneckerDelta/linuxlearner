@@ -13,7 +13,6 @@ export class LinuxCommandResultService {
     }
 
     public setResultContent(line: string): void {
-        console.log('Setze Result mit: ', line);
         this.resultContent.next(line);
     }
 

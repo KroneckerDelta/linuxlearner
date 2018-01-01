@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit, OnChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { LinuxCommand } from 'app/linux-command/model/models';
 
 
@@ -15,15 +15,12 @@ export class LinuxCommandDragElementComponent implements OnInit, OnDestroy, OnCh
     constructor() { }
 
     public ngOnInit() {
-        console.log(this.name + '.ngOnInit()');
     }
 
     public ngOnDestroy() {
-        console.log(this.name + '.ngOnDestroy()');
     }
 
     public ngOnChanges() {
-        console.log('dragge');
     }
 
 }

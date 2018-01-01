@@ -18,18 +18,15 @@ export class LinuxCommandLineComponent implements OnInit, OnDestroy {
         private linuxCommandLineService: LinuxCommandLineService
     ) {
         this.subscription = linuxCommandLineService.getCurrentCommandLine().subscribe((value) => {
-            console.log('neuer Wert: ' + value);
             this.commandLine = this.prompt + ' ' + value;
         });
 
     }
 
     public ngOnInit() {
-        console.log(this.name + '.ngOnInit()');
     }
 
     public ngOnDestroy() {
-        console.log(this.name + '.ngOnDestroy()');
         this.subscription.unsubscribe();
     }
 }

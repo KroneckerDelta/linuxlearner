@@ -20,10 +20,8 @@ export class LinuxCommandResultComponent implements OnInit, OnDestroy {
     }
 
     public ngOnInit() {
-        console.log(this.name + '.ngOnInit()');
     }
 
     public ngOnDestroy() {
-        console.log(this.name + '.ngOnDestroy()');
     }
 }
