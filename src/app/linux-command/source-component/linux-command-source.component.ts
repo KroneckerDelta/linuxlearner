@@ -13,6 +13,7 @@ export class LinuxCommandSourceComponent implements OnInit, OnDestroy {
     private source: string = '';
     constructor(private linuxSourceService: LinuxCommandSourceService) {
         this.source = this.sampledata();
+        this.linuxSourceService.setSourceContent(this.source);
 
     }
 
