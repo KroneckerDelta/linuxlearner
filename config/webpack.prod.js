@@ -6,11 +6,11 @@ const buildUtils = require('./build-utils');
 
 /**
  * Used to merge webpack configs
-*/
+ */
 const webpackMerge = require('webpack-merge');
 /**
  * The settings that are common to prod and dev
-*/
+ */
 const commonConfig = require('./webpack.common.js');
 
 /**
@@ -25,17 +25,18 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 
 
-function getUglifyOptions (supportES2015) {
+function getUglifyOptions(supportES2015) {
   const uglifyCompressOptions = {
-    pure_getters: true, /* buildOptimizer */
+    pure_getters: true,
+    /* buildOptimizer */
     // PURE comments work best with 3 passes.
     // See https://github.com/webpack/webpack/issues/2899#issuecomment-317425926.
-    passes: 3         /* buildOptimizer */
+    passes: 3 /* buildOptimizer */
   };
 
   return {
     ecma: supportES2015 ? 6 : 5,
-    warnings: false,    // TODO verbose based on option?
+    warnings: false, // TODO verbose based on option?
     ie8: false,
     mangle: true,
     compress: uglifyCompressOptions,
@@ -51,7 +52,7 @@ module.exports = function (env) {
   const supportES2015 = buildUtils.supportES2015(buildUtils.DEFAULT_METADATA.tsConfigPath);
   const METADATA = Object.assign({}, buildUtils.DEFAULT_METADATA, {
     host: process.env.HOST || 'localhost',
-    port: process.env.PORT || 8080,
+    port: process.env.PORT || 8888,
     ENV: ENV,
     HMR: false
   });
@@ -59,7 +60,10 @@ module.exports = function (env) {
   // set environment suffix so these environments are loaded.
   METADATA.envFileSuffix = METADATA.E2E ? 'e2e.prod' : 'prod';
 
-  return webpackMerge(commonConfig({ env: ENV, metadata: METADATA }), {
+  return webpackMerge(commonConfig({
+    env: ENV,
+    metadata: METADATA
+  }), {
 
     /**
      * Options affecting the output of the compilation.

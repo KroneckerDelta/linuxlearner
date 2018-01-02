@@ -1,6 +1,6 @@
 <div class="source-component">
   <h2 class="text-center">Source</h2>
-  <textarea rows="50" cols="60" class="my-textarea" (change)="changeText()">
+  <textarea rows="50" cols="60" class="my-textarea" (change)="changeText()" [(ngModel)]="source">
     {{source}}
   </textarea>
 </div>
