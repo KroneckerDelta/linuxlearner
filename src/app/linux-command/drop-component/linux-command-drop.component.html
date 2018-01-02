@@ -4,12 +4,12 @@
   <div dnd-droppable class="panel panel-info" (onDropSuccess)="transferDataSuccess($event)">
     <div class="panel-heading">Command (Items:{{receivedData.length}})</div>
     <div class="panel-body">
-      <div [hidden]="!receivedData.length > 0" *ngFor="let data of receivedData" >
+      <div [hidden]="!receivedData.length > 0" *ngFor="let data of receivedData">
         <button type="button" class="close" aria-label="Close" (click)="deleteItem(data)">
-        <span aria-hidden="true">&times;</span>
+          <span aria-hidden="true">&times;</span>
         </button>
         <div>{{data.command}}
-          <select name="options" (change)="onOptionChange(data, o)" [(ngModel)]="data.currentOption">
+          <select name="options" (change)="onOptionChange(data)" [(ngModel)]="data.currentOption">
             <option *ngFor="let o of data.options">{{o}}</option>
           </select>
           <input [hidden]="data.command==='wc'" type="text" [(ngModel)]="data.pattern">

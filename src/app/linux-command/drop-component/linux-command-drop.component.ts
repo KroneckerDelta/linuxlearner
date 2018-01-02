@@ -34,24 +34,24 @@ export class LinuxCommandDropComponent implements OnInit, OnDestroy {
     public transferDataSuccess($event: any) {
         let x = $event.dragData;
         this.receivedData.push(this.dispatchCommand(x));
+        this.createCommandLineString();
     }
 
-    public onOptionChange(lc: LinuxCommand, o: string) {
+    public onOptionChange(lc: LinuxCommand) {
         this.linuxCommandService.postData(this.convertListToPostable()).subscribe((result) => {
 
             this.linuxCommandResultService.setResultContent(result.text());
         });
-        this.linuxCommandLineService.setCurrentCommandLine(
-            this.linuxCommandLineService.getCurrenCommandLineValue() + ' --' + lc.currentOption
-        );
+
+        this.createCommandLineString();
+
     }
+
 
     public deleteItem(command2Remove: LinuxCommand) {
         this.receivedData = this.receivedData.filter((item) => item !== command2Remove);
     }
     private dispatchCommand(command: string): LinuxCommand {
-
-        this.linuxCommandLineService.setCurrentCommandLine(command);
 
         switch (command) {
             case 'grep':
@@ -101,5 +101,41 @@ export class LinuxCommandDropComponent implements OnInit, OnDestroy {
 
         //     });
     }
+    private createCommandLineString() {
 
+        let actual: LinuxCommand = null;
+        let result: string = '';
+        this.receivedData.forEach((val) => {
+            // mal in Ruhe über die IF Cascade nachdenken, wenn es nicht so spät ist...
+            if (actual === null) {
+                actual = val;
+                result += val.command;
+                if (val.currentOption) {
+                    result += ' --' + val.currentOption;
+                }
+                if (val.pattern) {
+                    result += ' ';
+                    result += val.pattern;
+                }
+                result += ' <<FILENAME>>';
+            } else if (actual.command === val.command) {
+                if (val.currentOption) {
+                    result += ' --' + val.currentOption;
+                }
+            } else if (actual.command !== val.command) {
+                actual = val;
+                result += ' | ';
+                result += val.command;
+                if (val.currentOption) {
+                    result += ' --' + val.currentOption;
+                }
+                if (val.pattern) {
+                    result += ' ';
+                    result += val.pattern;
+                }
+            }
+        });
+
+        this.linuxCommandLineService.setCurrentCommandLine(result);
+    }
 }
