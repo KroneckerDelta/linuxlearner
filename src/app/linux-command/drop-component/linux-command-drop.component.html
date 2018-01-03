@@ -9,10 +9,10 @@
           <span aria-hidden="true">&times;</span>
         </button>
         <div>{{data.command}}
-          <select name="options" (change)="onOptionChange(data)" [(ngModel)]="data.currentOption">
+          <select name="options" (change)="update()" [(ngModel)]="data.currentOption">
             <option *ngFor="let o of data.options">{{o}}</option>
           </select>
-          <input [hidden]="data.command==='wc'" type="text" [(ngModel)]="data.pattern">
+          <input [hidden]="data.command==='wc'" type="text" [(ngModel)]="data.pattern" (change)="update()">
         </div>
       </div>
 

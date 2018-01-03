@@ -37,7 +37,7 @@ export class LinuxCommandDropComponent implements OnInit, OnDestroy {
         this.createCommandLineString();
     }
 
-    public onOptionChange(lc: LinuxCommand) {
+    public update() {
         this.linuxCommandService.postData(this.convertListToPostable()).subscribe((result) => {
 
             this.linuxCommandResultService.setResultContent(result.text());
