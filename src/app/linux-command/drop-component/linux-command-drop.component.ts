@@ -24,9 +24,11 @@ export class LinuxCommandDropComponent implements OnInit, OnDestroy {
         this.subscription = this.linuxCommandUpdateService.getSourceAsObservable().subscribe((val) => {
             this.receivedData = val;
         });
+
     }
 
     public ngOnInit() {
+        this.update();
     }
 
     public ngOnDestroy() {

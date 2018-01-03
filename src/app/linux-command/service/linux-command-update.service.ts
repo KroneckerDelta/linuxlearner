@@ -37,22 +37,32 @@ export class LinuxCommandUpdateService {
 
     public addCommand(lc: LinuxCommand) {
         this.getSourceValue().push(lc);
-        this.createCommandLineString();
+        this.update();
     }
 
     public deleteCommand(lc: LinuxCommand) {
         this.setSourceContent(this.getSourceValue().filter((item) => item !== lc));
+        this.update();
     }
 
     /**
      * communicate with backend
      */
     public update() {
-        this.linuxCommandService.postData(this.convertListToPostable()).subscribe((result) => {
 
-            this.linuxCommandResultService.setResultContent(result.text());
-        });
-        this.createCommandLineString();
+        let postit = this.convertListToPostable();
+        console.log('postit', postit);
+        if (postit) {
+            this.linuxCommandService.postData(postit).subscribe((result) => {
+                this.linuxCommandResultService.setResultContent(result.text());
+            });
+            this.createCommandLineString();
+        } else {
+            let x = this.linuxCommandSourceService.getSourceValue();
+            console.log('solte hier rein gehen!!', x, 'aha');
+            this.linuxCommandResultService
+                .setResultContent(this.linuxCommandSourceService.getSourceValue());
+        }
     }
 
 
@@ -109,8 +119,11 @@ export class LinuxCommandUpdateService {
             }
         });
         console.log('fertiges Command: ', result);
-
-        return JSON.stringify(result);
+        if (result) {
+            return JSON.stringify(result);
+        } else {
+            return '';
+        }
 
         // return JSON.stringify(
         //     {

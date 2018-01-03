@@ -12,7 +12,6 @@ export class LinuxCommandService {
 
 
     public postData(object: string) {
-
         console.log('REST: ', object);
         return this.http
             .post(this.url,
