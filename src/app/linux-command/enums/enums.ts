@@ -5,6 +5,7 @@ export enum Commands {
 }
 
 export enum GrepOptions {
+    none,
     count,
     fixedstrings,
     ignorecase,
@@ -15,6 +16,7 @@ export enum GrepOptions {
 }
 
 export enum WcOptions {
+    none,
     chars,
     lines,
     words
