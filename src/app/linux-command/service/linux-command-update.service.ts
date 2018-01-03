@@ -13,9 +13,9 @@ import { LinuxCommandAPI } from '../model/models';
 @Injectable()
 export class LinuxCommandUpdateService {
 
-    private allCommand: LinuxCommand[] = [];
+    // private allCommand: LinuxCommand[] = [];
 
-    private receivedData: BehaviorSubject<LinuxCommand> = new BehaviorSubject(null);
+    private receivedData: BehaviorSubject<LinuxCommand[]> = new BehaviorSubject([]);
 
     constructor(
         private linuxCommandService: LinuxCommandService,
@@ -23,16 +23,25 @@ export class LinuxCommandUpdateService {
         private linuxCommandSourceService: LinuxCommandSourceService,
         private linuxCommandLineService: LinuxCommandLineService) { }
 
-    public getSourceAsObservable(): Observable<LinuxCommand> {
+    public getSourceAsObservable(): Observable<LinuxCommand[]> {
         return this.receivedData.asObservable();
     }
 
-    public setSourceContent(line: LinuxCommand): void {
+    public setSourceContent(line: LinuxCommand[]): void {
         this.receivedData.next(line);
     }
 
-    public getSourceValue(): LinuxCommand {
+    public getSourceValue(): LinuxCommand[] {
         return this.receivedData.getValue();
+    }
+
+    public addCommand(lc: LinuxCommand) {
+        this.getSourceValue().push(lc);
+        this.createCommandLineString();
+    }
+
+    public deleteCommand(lc: LinuxCommand) {
+        this.setSourceContent(this.getSourceValue().filter((item) => item !== lc));
     }
 
     /**
@@ -43,43 +52,15 @@ export class LinuxCommandUpdateService {
 
             this.linuxCommandResultService.setResultContent(result.text());
         });
-
         this.createCommandLineString();
-
     }
 
-    private convertListToPostable(): string {
-        let result: LinuxCommandAPI = null;
 
-        this.allCommand.forEach((item, index) => {
-            console.log('Item: ', item);
-            console.log('index: ', index);
-            let lc = new LinuxCommandAPI(item);
-            if (index === 0) {
-                result = lc;
-                result.source = this.linuxCommandSourceService.getSourceValue();
-            } else {
-                result.pipe = lc;
-            }
-        });
-        console.log('fertiges Command: ', result);
-
-        return JSON.stringify(result);
-
-        // return JSON.stringify(
-        //     {
-        //         command: 'wc',
-        //         source: 'Dieser Text wird gegrept, wirklich!',
-        //         schalter: 'words',
-        //         pipe: null
-
-        //     });
-    }
     private createCommandLineString() {
 
         let actual: LinuxCommand = null;
         let result: string = '';
-        this.receivedData.forEach((val) => {
+        this.getSourceValue().forEach((val) => {
             // mal in Ruhe über die IF Cascade nachdenken, wenn es nicht so spät ist...
             if (actual === null) {
                 actual = val;
@@ -111,5 +92,33 @@ export class LinuxCommandUpdateService {
         });
 
         this.linuxCommandLineService.setCurrentCommandLine(result);
+    }
+
+    private convertListToPostable(): string {
+        let result: LinuxCommandAPI = null;
+
+        this.getSourceValue().forEach((item, index) => {
+            console.log('Item: ', item);
+            console.log('index: ', index);
+            let lc = new LinuxCommandAPI(item);
+            if (index === 0) {
+                result = lc;
+                result.source = this.linuxCommandSourceService.getSourceValue();
+            } else {
+                result.pipe = lc;
+            }
+        });
+        console.log('fertiges Command: ', result);
+
+        return JSON.stringify(result);
+
+        // return JSON.stringify(
+        //     {
+        //         command: 'wc',
+        //         source: 'Dieser Text wird gegrept, wirklich!',
+        //         schalter: 'words',
+        //         pipe: null
+
+        //     });
     }
 }
