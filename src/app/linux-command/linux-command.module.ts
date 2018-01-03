@@ -15,6 +15,7 @@ import { LinuxCommandComponent } from './linux-command.component';
 import { LinuxCommandRoutesModule } from './linux-command.routes.module';
 import { LinuxCommandResultComponent } from './result-component/linux-command-result.component';
 import { LinuxCommandLineService, LinuxCommandService } from './service';
+import { LinuxCommandUpdateService } from './service/linux-command-update.service';
 import { LinuxCommandSourceComponent } from './source-component/linux-command-source.component';
 
 
@@ -42,7 +43,8 @@ import { LinuxCommandSourceComponent } from './source-component/linux-command-so
         LinuxCommandService,
         LinuxCommandLineService,
         LinuxCommandSourceService,
-        LinuxCommandResultService
+        LinuxCommandResultService,
+        LinuxCommandUpdateService
     ],
     exports: [
         LinuxCommandDragElementComponent
