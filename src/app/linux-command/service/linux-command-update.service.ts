@@ -75,7 +75,7 @@ export class LinuxCommandUpdateService {
             if (actual === null) {
                 actual = val;
                 result += val.command;
-                if (val.currentOption) {
+                if (val.currentOption && val.currentOption !== 'none') {
                     result += ' --' + val.currentOption;
                 }
                 if (val.pattern) {
@@ -84,14 +84,14 @@ export class LinuxCommandUpdateService {
                 }
                 result += ' <<FILENAME>>';
             } else if (actual.command === val.command) {
-                if (val.currentOption) {
+                if (val.currentOption && val.currentOption !== 'none') {
                     result += ' --' + val.currentOption;
                 }
             } else if (actual.command !== val.command) {
                 actual = val;
                 result += ' | ';
                 result += val.command;
-                if (val.currentOption) {
+                if (val.currentOption && val.currentOption !== 'none') {
                     result += ' --' + val.currentOption;
                 }
                 if (val.pattern) {

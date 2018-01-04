@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { GrepOptions } from 'app/linux-command/enums/enums';
+import { GrepOptions, SedOptions, SortOptions } from 'app/linux-command/enums/enums';
 import { LinuxCommand } from 'app/linux-command/model/models';
 import { LinuxCommandUpdateService } from 'app/linux-command/service';
 import { Subscription } from 'rxjs';
@@ -52,25 +52,29 @@ export class LinuxCommandDropComponent implements OnInit, OnDestroy {
     }
 
     private dispatchCommand(command: string): LinuxCommand {
-
+        let options: string[] = [];
         switch (command) {
             case 'grep':
-                const gkeys = Object.keys(GrepOptions);
-                const grepOptionsAsString = gkeys.slice(gkeys.length / 2);
-                return new LinuxCommand('grep', grepOptionsAsString);
+                options = this.extractOptions(GrepOptions);
+                break;
             case 'wc':
-                const wckeys = Object.keys(WcOptions);
-                const wcOptionsAsString = wckeys.slice(wckeys.length / 2);
-                return new LinuxCommand('wc', wcOptionsAsString, null);
+                options = this.extractOptions(WcOptions);
+                break;
             case 'sed':
-                const sedkeys = Object.keys(WcOptions);
-                const sedOptionsAsString = sedkeys.slice(sedkeys.length / 2);
-                return new LinuxCommand('not Implemented', wcOptionsAsString);
-
+                options = this.extractOptions(SedOptions);
+                break;
+            case 'sort':
+                options = this.extractOptions(SortOptions);
+                break;
             default:
-                const def = Object.keys(WcOptions);
-                const defaultOptionsAsString = wckeys.slice(def.length / 2);
-                return new LinuxCommand('not Implemented', defaultOptionsAsString);
+                options = this.extractOptions(WcOptions);
         }
+        const result: LinuxCommand = new LinuxCommand(command, options);
+        return result;
+    }
+    private extractOptions(options: any): string[] {
+        const keys = Object.keys(options);
+        const keyAsString = keys.slice(keys.length / 2);
+        return keyAsString;
     }
 }

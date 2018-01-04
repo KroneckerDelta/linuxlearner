@@ -12,7 +12,7 @@
           <select name="options" (change)="update()" [(ngModel)]="data.currentOption">
             <option *ngFor="let o of data.options">{{o}}</option>
           </select>
-          <input [hidden]="data.command==='wc'" type="text" [(ngModel)]="data.pattern" (change)="update()">
+          <input [hidden]="data.command==='wc' || data.command==='sort'" type="text" [(ngModel)]="data.pattern" (change)="update()">
         </div>
       </div>
 

@@ -1,7 +1,8 @@
 export enum Commands {
     grep,
     sed,
-    wc
+    wc,
+    sort
 }
 
 export enum GrepOptions {
@@ -20,4 +21,35 @@ export enum WcOptions {
     chars,
     lines,
     words
+}
+
+export enum SortOptions {
+    none,
+    check,
+    merge,
+    unique,
+    ignoreLeadingBlanks,
+    dictionaryOrder,
+    ignoreCase,
+    numericSort,
+    generalNumericSort,
+    humanNumericSort,
+    monthSort,
+    versionSort,
+    reverse
+}
+
+export enum SedOptions {
+    none,
+    quiet,
+    global,
+    print,
+    lineNumber,
+    ignoreCase,
+    substitute,
+    append,
+    insert,
+    change,
+    delete,
+    translate
 }
